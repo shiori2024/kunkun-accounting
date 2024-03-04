@@ -12,6 +12,7 @@
 
 <script>
 import FormComponent from '@/components/FormComponent.vue'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -21,17 +22,23 @@ export default {
     }
   },
   components: { FormComponent },
+  computed: {
+    ...mapState(['token'])
+  },
   created () {
-    this.info = JSON.parse(localStorage.getItem('LoginInfo'))
+    this.info = JSON.parse(localStorage.getItem('user_token'))
     this.username = this.info.username
     this.password = this.info.password
   },
   methods: {
+    ...mapMutations(['setToken', 'removeToken']),
+    ...mapActions(['setToken', 'removeToken']),
     async login () {
       if (!this.username || !this.password) {
         return alert('用户名和密码不能为空')
       } else {
         this.saveLoginInfo()
+        this.$router.push('/')
         console.log('数据已保存到本地', this.info)
       }
       this.username = ''
@@ -43,7 +50,10 @@ export default {
         password: this.password,
         token: 'test'
       })
-      localStorage.setItem('LoginInfo', this.info)
+      this.setToken(this.info)
+    },
+    async logout () {
+      this.removeToken()
     }
   }
 }

@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="left">
       <!-- <div class="form">
         <input v-model.trim="name" type="text" placeholder="消费名称">
         <input v-model.number="price" placeholder="消费价格">
         <button @click="add">添加账单</button>
       </div> -->
-      <FormComponent :btnChange="add" v-model.trim="name" btnText="添加账单" vertical="row" idName="name" strTip="消费名称">
+      <FormComponent :btnChange="add" v-model.trim="name" btnText="添加账单" idName="name" strTip="消费名称">
         <template #input>
           <input v-model.number="price" placeholder="消费价格">
         </template>
