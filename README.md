@@ -6,14 +6,16 @@
 - [x] 项目初始化
 - [x] 前端界面
 - [ ] 路由守卫
-- [ ] Vuex状态管理
-- [ ] 数据本地持久化
+- [x] Vuex状态管理
+- [x] 数据本地持久化
 - [ ] 后端接口
-- [ ] 暗黑模式
+- [x] 暗黑模式
 
 ## Project setup
-```
+```sh
 npm install
+# 或许会报错，版本不兼容的问题，请尝试以下命令
+npm install --legacy-peer-deps
 ```
 
 ### Compiles and hot-reloads for development
