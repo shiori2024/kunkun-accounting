@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ 'dark-theme': isDarkMode }">
     <span>
       <a :href="repoUrl" target="_blank">
         <slot name="repo">源代码</slot>
@@ -33,6 +33,11 @@ export default {
   created () {
     this.getTime()
   },
+  computed: {
+    isDarkMode () {
+      return this.$store.state.isDarkMode
+    }
+  },
   methods: {
     getTime () {
       // 获取当前年份
@@ -65,10 +70,20 @@ export default {
 
 a {
   text-decoration: none;
-  color: #42b983;
+  color: $color-theme-green;
 
   &:hover {
-    border-bottom: 2px solid #42b983;
+    border-bottom: 2px solid $color-theme-green;
+  }
+}
+
+.dark-theme {
+  background-color: $bg-color-theme-nav-dark;
+  color: $color-theme-dark;
+  box-shadow: unset;
+
+  a {
+    color: $bg-color-link-active;
   }
 }
 </style>

@@ -11,7 +11,7 @@
           <input v-model.number="price" placeholder="消费价格">
         </template>
       </FormComponent>
-      <table>
+      <table :style="{ color: isDarkMode ? '#fff' : '#000' }">
         <thead>
           <tr>
             <th>编号</th>
@@ -38,7 +38,7 @@
         </tfoot>
       </table>
     </div>
-    <v-chart class="chart right" :option="option" />
+    <v-chart class="chart right" :option="option"/>
   </div>
 </template>
 
@@ -54,6 +54,7 @@ import {
   LegendComponent
 } from 'echarts/components'
 import VChart, { THEME_KEY } from 'vue-echarts'
+import { mapState } from 'vuex'
 import FormComponent from '@/components/FormComponent.vue'
 use([
   CanvasRenderer,
@@ -68,8 +69,10 @@ export default {
     VChart,
     FormComponent
   },
-  provide: {
-    [THEME_KEY]: ''
+  provide () {
+    return {
+      [THEME_KEY]: this.isDarkMode ? 'dark' : ''
+    }
   },
   data () {
     return {
@@ -118,7 +121,9 @@ export default {
     // 金额计算
     total () {
       return this.list.reduce((sum, item) => sum + item.price, 0)
-    }
+    },
+    // 暗黑模式状态
+    ...mapState(['isDarkMode'])
   },
   created () {
     this.getList()
@@ -167,7 +172,7 @@ export default {
 }
 
 .red {
-  color: red;
+  color: #f13c22;
 }
 
 .home {
@@ -175,12 +180,14 @@ export default {
   justify-content: center;
   align-content: center;
   margin-top: 30px;
+  height: calc(100vh - 75px);
 }
 
 .left {
   &>table {
     width: 100%;
     border-collapse: collapse;
+    color: $color-theme-light;
 
     &>tfoot>tr,
     &>tbody>tr,
@@ -241,11 +248,11 @@ export default {
 
 .del {
   cursor: pointer;
-  color: #4b83d6;
+  color: $bg-color-link-active;
   text-decoration: none;
 
   &:hover {
-    color: #254f8f;
+    color: $color-link-active;
   }
 }
 

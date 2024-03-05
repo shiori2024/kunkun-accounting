@@ -37,4 +37,8 @@ a {
     color: #42b983;
   }
 }
+
+.about {
+  height: calc(100vh - 100px);
+}
 </style>

@@ -28,4 +28,11 @@ a {
         color: #42b983;
     }
 }
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px);
+}
 </style>

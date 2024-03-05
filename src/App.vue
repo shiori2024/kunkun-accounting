@@ -1,17 +1,18 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'dark-theme': isDarkMode }">
     <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
-    <NavBar></NavBar>
+    <NavBar :isDarkMode="isDarkMode"></NavBar>
     <router-view />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'App',
   data () {
@@ -19,7 +20,13 @@ export default {
       backUrl: ''
     }
   },
-  components: { NavBar }
+  components: { NavBar },
+  computed: {
+    ...mapState(['isDarkMode'])
+  },
+  methods: {
+    ...mapMutations(['toggleDarkMode'])
+  }
 }
 </script>
 
@@ -34,9 +41,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $color-theme-light;
 }
 
+.dark-theme {
+  background-color: $bg-color-theme-dark;
+  color: $color-theme-dark;
+}
 // nav {
 //   padding: 30px;
 

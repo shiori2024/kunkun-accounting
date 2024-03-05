@@ -1,5 +1,8 @@
-// 字体颜色
+// 字体颜色1
 $color-theme: #2c3e50;
+// 字体颜色2
+$color-theme-green: #42b983;
+
 // 明亮主题下字体颜色
 $color-theme-light: #2c3e50;
 // 暗黑主题下字体颜色
@@ -7,7 +10,10 @@ $color-theme-dark: #fff;
 // 明亮主题下背景颜色
 $bg-color-theme-light: #eee;
 // 暗黑主题下背景颜色
-$bg-color-theme-dark: #2c3e50;
+$bg-color-theme-dark: #131124;
+
+// 暗黑主题下导航背景颜色
+$bg-color-theme-nav-dark: #2c3e50;
 
 // 明亮主题下按钮颜色
 $bg-color-btn-light: #42b983;

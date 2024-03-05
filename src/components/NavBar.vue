@@ -13,7 +13,7 @@
     </div>
     <div class="right">
       <router-link to="/login">登录</router-link>
-      <a class="btn" type="button" @click="toggleDarkMode">{{ isDarkMode ? '浅色' : '暗黑' }}</a>
+      <button class="btn" type="button" @click="toggleDarkMode">{{ isDarkMode ? '浅色' : '暗黑' }}</button>
     </div>
   </div>
 </template>
@@ -21,14 +21,14 @@
 <script>
 export default {
   name: 'NavBar',
-  data () {
-    return {
-      isDarkMode: false
+  computed: {
+    isDarkMode () {
+      return this.$store.state.isDarkMode
     }
   },
   methods: {
     toggleDarkMode () {
-      this.isDarkMode = !this.isDarkMode
+      this.$store.dispatch('toggleDarkMode')
     }
   }
 }
@@ -36,6 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
+  transition: background-color 0.3s ease, color 0.3s ease;
   background-color: $bg-color-theme-light;
   margin: 0 0 20px auto;
   width: 100vw;
@@ -59,14 +60,17 @@ export default {
 
 .btn {
   flex: 1;
+  width: 42px;
+  height: 28px;
   margin-left: 20px;
   border: 1px solid $bg-color-btn-light;
   color: $color-theme-light;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // 暗黑模式样式
 .dark-theme {
-  background-color: $bg-color-theme-dark;
+  background-color: $bg-color-theme-nav-dark;
   color: $color-theme-dark;
 
   a {
@@ -88,6 +92,25 @@ export default {
     border: none;
   }
 }
+
+// 定义动画
+// 如果有更好看的过渡效果，欢迎提PR ^^
+// @keyframes fadeInOutDark {
+//   0% {
+//     background-color: $bg-color-btn-dark;
+//     color: $color-theme-dark;
+//   }
+
+//   50% {
+//     background-color: darken($bg-color-btn-dark, 10%);
+//     color: lighten($color-theme-dark, 10%);
+//   }
+
+//   100% {
+//     background-color: $bg-color-btn-dark;
+//     color: $color-theme-dark;
+//   }
+// }
 
 a {
   text-decoration: none;

@@ -8,7 +8,9 @@ const store = new Vuex.Store({
     // 用户鉴权token
     token: null,
     // 用户信息
-    userInfo: []
+    userInfo: [],
+    // 暗黑模式
+    isDarkMode: false
     // userInfo: [
     //   {
     //     'uid': '',
@@ -33,6 +35,10 @@ const store = new Vuex.Store({
     // 清除token
     removeToken (state) {
       state.token = null
+    },
+    // 切换暗黑模式
+    toggleDarkMode (state) {
+      state.isDarkMode = !state.isDarkMode
     }
   },
   actions: {
@@ -45,6 +51,10 @@ const store = new Vuex.Store({
     removeToken ({ commit }) {
       commit('removeToken')
       localStorage.removeItem('user_token')
+    },
+    // 设置暗黑模式
+    toggleDarkMode ({ commit }) {
+      commit('toggleDarkMode')
     }
   },
   modules: {
