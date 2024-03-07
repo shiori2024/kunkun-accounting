@@ -71,7 +71,7 @@ export default {
   },
   provide () {
     return {
-      [THEME_KEY]: this.isDarkMode ? 'dark' : ''
+      [THEME_KEY]: this.isDarkMode ? 'dark' : 'light'
     }
   },
   data () {

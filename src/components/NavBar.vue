@@ -2,11 +2,10 @@
   <div class="nav" :class="{ 'dark-theme': isDarkMode }">
     <div class="left">
       <slot name="logo">
-        鲲鲲记账
+        <a href="/">鲲鲲记账</a>
       </slot>
     </div>
     <div class="main">
-      <router-link to="/">layout</router-link>
       <router-link to="/home">首页</router-link>
       <router-link to="/user">用户</router-link>
       <router-link to="/about">关于</router-link>

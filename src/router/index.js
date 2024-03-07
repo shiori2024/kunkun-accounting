@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -52,9 +53,20 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  // base: process.env.BASE_URL,
-  base: '/',
+  base: process.env.BASE_URL || '/',
   routes
+})
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  // 检查用户是否已登录
+  const isLoggedIn = store.getters.isLoggedIn
+  // 如果用户尝试访问 '/home' 且未登录，则重定向到 '/login'
+  if (to.name === 'home' && !isLoggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

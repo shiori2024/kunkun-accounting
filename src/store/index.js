@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     // ]
   },
   getters: {
+    isLoggedIn: state => state.token !== null
   },
   mutations: {
     // 设置token
@@ -35,6 +36,14 @@ const store = new Vuex.Store({
     // 清除token
     removeToken (state) {
       state.token = null
+    },
+    // 设置用户信息
+    setUserInfo (state, userInfo) {
+      state.userInfo = userInfo
+    },
+    // 清除用户信息
+    removeUserInfo (state) {
+      state.userInfo = []
     },
     // 切换暗黑模式
     toggleDarkMode (state) {
@@ -51,6 +60,16 @@ const store = new Vuex.Store({
     removeToken ({ commit }) {
       commit('removeToken')
       localStorage.removeItem('user_token')
+    },
+    // 设置用户信息
+    setUserInfo ({ commit }, userInfo) {
+      commit('setUserInfo', userInfo)
+      localStorage.setItem('user_info', userInfo)
+    },
+    // 清除用户信息
+    removeUserInfo ({ commit }) {
+      commit('removeUserInfo')
+      localStorage.removeItem('user_info')
     },
     // 设置暗黑模式
     toggleDarkMode ({ commit }) {
